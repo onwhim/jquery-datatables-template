@@ -8,5 +8,5 @@ Steps to install.
 
 To Modify to use for your own. There are comments inside the files that points which lines to modify. 
 
-![alt text](https://raw.githubusercontent.com/onwhim/jquery-datatables-template/master/datatables.png?)
+![alt text](https://raw.githubusercontent.com/onwhim/jquery-datatables-template/master/datatables.png?1)
 
