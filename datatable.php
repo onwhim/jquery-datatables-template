@@ -56,7 +56,7 @@ table.dataTable thead tr {
     "serverSide": true,
     "searching": true,
     "ajax": {
-      url: "data-server-side.php",
+      url: "data.php",
       type: "POST",
     }
   });
