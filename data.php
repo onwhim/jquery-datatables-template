@@ -19,7 +19,7 @@ $where_clause = "";
 $has_custom_search = false;
 $db_params = array();
 
-foreach($_POST['columns'] as $i=>$v){
+foreach($_POST['columns'] as $i=>$v){  // custom search is already being handled by this file. Just modify the javascript part.
 	if($v['search']['value'] != ""){
 		$search_field = $_POST['columns'][$i]['name'];
 		$search_value = $v['search']['value'].'%';
@@ -36,7 +36,7 @@ foreach($_POST['columns'] as $i=>$v){
 	}
 }
 
-$default_global_search_fields = array('last_name', 'first_name'); // modify this
+$default_global_search_fields = array('last_name', 'first_name'); // modify this - searchable db columns
 if($where_clause == "" && $db_default_search_query != ""){
 	foreach($default_global_search_fields as $k=>$search_field){
 		$search_value = $db_default_search_query.'%';
@@ -63,7 +63,7 @@ else $order_clause = "";
 
 $per_page = isset($_POST['length'])? $_POST['length'] : 10;
 $current_sql_offset = isset($_POST['start'])? $_POST['start'] : 0;
-$sql_string = "SELECT student_id, first_name, middle_name, last_name, contact_number FROM students $where_clause $order_clause LIMIT {$current_sql_offset}, {$per_page}"; // modify this
+$sql_string = "SELECT student_id, first_name, middle_name, last_name, contact_number FROM students $where_clause $order_clause LIMIT {$current_sql_offset}, {$per_page}"; // modify this - return columns only
 $stmt = $dbh->prepare($sql_string);
 
 if(count($db_params)>0) {
@@ -96,14 +96,14 @@ echo json_encode($output);
 
 function get_all_records_count(){
 	global $dbh;	
-	$stmt = $dbh->query("SELECT COUNT(*) as total FROM students"); // modify this
+	$stmt = $dbh->query("SELECT COUNT(*) as total FROM students"); // modify this - your db table
 	$row = $stmt->fetch(PDO::FETCH_ASSOC);
 	return isset($row['total']) ? $row['total'] : 0;
 }
 
 function get_filtered_count($where_clause = "", $params = array()){
 	global $dbh, $sql_string2, $went_in;
-	$sql_string2 = "SELECT COUNT(*) as total FROM students $where_clause"; // modify this
+	$sql_string2 = "SELECT COUNT(*) as total FROM students $where_clause"; // modify this - your db table
 	$stmt = $dbh->prepare($sql_string2);
 	
 	if(count($params)){
