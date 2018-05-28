@@ -8,7 +8,7 @@ $print_r = print_r($_POST,true);
 $db_columns = array();
 
 foreach($_POST['columns'] as $i=>$v){
-	$db_columns[] = $v['name'];
+	$db_columns[] = $v['data'];
 }
 
 $db_sort_column = $db_columns[$_POST['order'][0]['column']];
@@ -21,7 +21,7 @@ $db_params = array();
 
 foreach($_POST['columns'] as $i=>$v){  // custom search is already being handled by this file. Just modify the javascript part.
 	if($v['search']['value'] != ""){
-		$search_field = $_POST['columns'][$i]['name'];
+		$search_field = $_POST['columns'][$i]['data'];
 		$search_value = $v['search']['value'].'%';
 		$db_params[':'.$search_field] = $search_value;
 		
