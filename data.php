@@ -36,7 +36,7 @@ foreach($_POST['columns'] as $i=>$v){  // custom search is already being handled
 	}
 }
 
-$default_global_search_fields = array('last_name', 'first_name'); // modify this - searchable db columns
+$default_global_search_fields = array('last_name', 'first_name'); // modify this - default searchable db columns
 if($where_clause == "" && $db_default_search_query != ""){
 	foreach($default_global_search_fields as $k=>$search_field){
 		$search_value = $db_default_search_query.'%';
